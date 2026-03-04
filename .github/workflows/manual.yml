@@ -1,9 +1,5 @@
-# This is a basic workflow that is manually triggered
+name: Manual API-Test
 
-name: Manual workflow
-
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
   workflow_dispatch:
 
@@ -15,4 +11,4 @@ jobs:
     - name: Static code analysis of the OpenAPI Spec using schemathesis
       uses: schemathesis/action@v2
       with:
-        schema: "swagger.yml"
+        schema: "http://localhost:8080/openapi.json"

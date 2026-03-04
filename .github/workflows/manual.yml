@@ -8,6 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag juice-shop:latest
+    
     - name: Static code analysis of the OpenAPI Spec using schemathesis
       uses: schemathesis/action@v2
       with:

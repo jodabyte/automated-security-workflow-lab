@@ -19,4 +19,4 @@ jobs:
     - name: Static code analysis of the OpenAPI Spec using schemathesis
       uses: schemathesis/action@v2
       with:
-        schema: "http://localhost:8080/openapi.json"
+        schema: "http://localhost:3000/openapi.json"

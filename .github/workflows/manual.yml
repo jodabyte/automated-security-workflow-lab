@@ -12,6 +12,9 @@ jobs:
     
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag juice-shop:latest
+
+    - name: Start juice-shop
+      run: docker run -rm -p 3000:3000 juice-shop:latest
     
     - name: Static code analysis of the OpenAPI Spec using schemathesis
       uses: schemathesis/action@v2

@@ -135,6 +135,11 @@ const errorhandler = require('errorhandler')
 const startTime = Date.now()
 
 const swaggerDocument = yaml.load(fs.readFileSync('./swagger.yml', 'utf8'))
+var options = {
+  swaggerOptions: {
+    url: "/api-docs/swagger.json",
+  },
+}
 
 const appName = config.get<string>('application.customMetricsPrefix')
 const startupGauge = new Prometheus.Gauge({
@@ -283,6 +288,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   app.use('/support/logs/:file', serveLogFiles()) // vuln-code-snippet vuln-line accessLogDisclosureChallenge
 
   /* Swagger documentation for B2B v2 endpoints */
+  app.get("/api-docs/swagger.json", (req, res) => res.json(swaggerDocument))
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
   app.use(express.static(path.resolve('frontend/dist/frontend')))
